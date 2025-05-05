@@ -1,85 +1,65 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      .container {
-        display: flex;
-        justify-content: center;
-      }
-      .box {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        width: 800px;
-        height: 800px;
-        border: 2px solid black;
-      }
-
-      .red {
-        background-color: rgb(105, 24, 24);
-        width: 50%;
-        height: 60%;
-      }
-      .blue {
-        background-color: deepskyblue;
-        width: 50%;
-        height: 100%;
-      }
-      .beige {
-        background-color: beige;
-        width: 50%;
-        height: 40%;
-      }
-      input {
-        border: 2px solid black;
-        border-radius: 5px;
-        margin: 4px;
-        padding: 5px;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="massage"></div>
-    <form onsubmit="return validate(event)">
+    <img src="logo.png" alt="logo">
+    <div id="message"></div>
+   
+    <form action="process.php" method="post">
       <div class="container">
         <div class="box">
           <div class="red">
             <legend id="legend">Registration Form</legend>
-            <label for="username">Enter your name :</label>
+            <label for="username">Enter your name :</label><br />
             <input
               type="text"
               name="username"
               id="username"
-              placeholder="Your name"
+              placeholder="Your Name"
             />
+
             <div>
-              <label for="email">Email :</label>
-              <input type="text" name="email" id="email" placeholder="Email" />
+              <label for="email">Email :</label><br />
+              <input type="email" name="email" id="email" placeholder="Email" />
             </div>
+
             <div>
-              <label for="Gender">Gender :</label>
-              <input type="radio" name="Gender" id="male" value="Male" />
-              <label for="Male">Male</label>
-              <input type="radio" name="Gender" id="Female" value="Female" />
-              <label for="Female">Female</label>
+              <label>Gender :</label>
+              <input type="radio" name="gender" id="male" value="Male" />
+              <label for="male">Male</label>
+              <input type="radio" name="gender" id="female" value="Female" />
+              <label for="female">Female</label>
             </div>
+
             <div>
-              <label for="password">Password:</label>
-              <input type="password" id="password" placeholder="Password" />
-            </div>
-            <div>
-              <label for="Confipassword">Confirm password:</label>
+              <label for="password">Password:</label><br />
               <input
                 type="password"
-                id="confirmPassword"
+                id="password"
+                name="password"
+                placeholder="Password"
+              />
+            </div>
+
+            <div>
+              <label for="confipassword">Confirm password:</label><br />
+              <input
+                type="password"
+                id="confipassword"
+                name="confipassword"
                 placeholder="Confirm your password"
               />
             </div>
-            <label for="DOB">DOB:</label>
-            <input type="date" />
+
+            <label for="dob">DOB:</label>
+            <input type="date" id="dob" name="dob" />
+
             <div>
               <label for="city">City :</label>
               <select name="city" id="city">
@@ -90,49 +70,84 @@
                 <option value="Sydney">Sydney</option>
               </select>
             </div>
+
             <div>
               <legend>Terms and Conditions</legend>
-              <input type="checkbox" id="agreed" value="agreed" />
+              <input type="checkbox" id="agreed" name="terms" value="agreed" />
               <label for="agreed">Agree</label>
-              <input type="checkbox" id="nagree" value="nagree" />
+              <input type="checkbox" id="nagree" name="terms" value="nagree" />
               <label for="nagree">Not agree</label>
             </div>
 
             <div>
               <input type="submit" name="submit" value="Submit" />
             </div>
+            </form>
+
+            <div>
+              <label for="bgColor">Choose Background Color:</label>
+              <input type="color" id="bgColor" name="bgColor" />
+            </div>
           </div>
 
           <div class="beige"></div>
-          <div class="blue"></div>
+          <div class="blue">
+            <table>
+              <thead>
+                <tr>
+                  <th>City</th>
+                  <th>AQI</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Dhaka</td>
+                  <td>85</td>
+                </tr>
+                <tr>
+                  <td>Cumilla</td>
+                  <td>110</td>
+                </tr>
+                <tr>
+                  <td>Khulna</td>
+                  <td>95</td>
+                </tr>
+                <tr>
+                  <td>Barisal</td>
+                  <td>78</td>
+                </tr>
+                <tr>
+                  <td>Kustia</td>
+                  <td>102</td>
+                </tr>
+                <tr>
+                  <td>Chandpur</td>
+                  <td>88</td>
+                </tr>
+                <tr>
+                  <td>Nuakhali</td>
+                  <td>75</td>
+                </tr>
+                <tr>
+                  <td>Sylhet</td>
+                  <td>80</td>
+                </tr>
+                <tr>
+                  <td>Rajshahi</td>
+                  <td>90</td>
+                </tr>
+                <tr>
+                  <td>Narshingdi</td>
+                  <td>70</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </form>
 
-    <script>
-      function validate(event) {
-        let uname = document.getElementById("username");
-        let pass = document.getElementById("password");
-        let con_pass = document.getElementById("Confipassword");
-        let massageDiv = document.getElementById("massage");
-
-        // Regular expression to check if the username only contains letters, hyphen (-), and dot (.)
-        let regex = /^[A-Za-z.-]+$/;
-        /*massageDiv.innerHTML = "";*/
-
-        if (/\d/.test(uname.value)) {
-          massageDiv.innerHTML = " Digits are not allowed.";
-        } else if (!regex.test(uname.value)) {
-          massageDiv.innerHTML =
-            "Invalid name: Special characters are not allowed except '-' and '.'.";
-        } else {
-          massageDiv.innerHTML = "OK: Name is valid.";
-        }
-
-        // Prevent form submission
-        event.preventDefault();
-        return false; // Ensure the form doesn't actually submit
-      }
-    </script>
+    <script src="newscrit.js"></script>
   </body>
 </html>
+

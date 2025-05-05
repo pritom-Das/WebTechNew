@@ -1,0 +1,121 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+.legend {
+  text-align: center;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 800px;
+  height: 800px;
+  border: 2px solid black;
+}
+label {
+  font-size: 1.1em;
+}
+
+.red {
+  background-color: rgb(105, 24, 24);
+  width: 50%;
+  height: 60%;
+}
+.blue {
+  background-color: deepskyblue;
+  width: 50%;
+  height: 100%;
+}
+.beige {
+  background-color: beige;
+  width: 50%;
+  height: 40%;
+}
+input {
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 4px;
+  padding: 5px;
+}
+.blue table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+/* Global Reset */
+input,
+select,
+textarea {
+  font-family: "Arial", sans-serif;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+th {
+  background-color: #759eb7; /* Green background for the header */
+  color: white; /* White text */
+  padding: 8px 8px; /* Add padding for readability */
+  text-align: left; /* Align text to the left */
+  font-size: 1.1em; /* Slightly larger text */
+}
+
+/* Styling for Table Data Cells */
+td {
+  padding: 5px 5px; /* Add padding for readability */
+  text-align: left; /* Align text to the left */
+  border-bottom: 1px solid #ddd; /* Add a light border at the bottom */
+  font-size: 1em; /* Set a comfortable font size */
+}
+
+/* Style the text, email, and password input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select {
+  width: 95%; /* Make the input fields take up the full width */
+  padding: 3px 3px; /* Add padding for comfortable text input */
+  margin: 3px 0; /* Spacing between input fields */
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #ccc; /* Border color */
+  background-color: #f9f9f9; /* Light background */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for a 3D effect */
+
+  color: #333; /* Text color */
+}
+
+/* Style the radio buttons and checkboxes */
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 8px; /* Add space between the checkbox/radio and label */
+  margin-bottom: 5px; /* Add spacing to the bottom */
+}
+
+/* Style the submit button */
+input[type="submit"],
+button {
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text */
+  padding: 5px 10px; /* Add padding for size */
+  border-radius: 5px; /* Rounded corners */
+  border: none; /* Remove default border */
+  cursor: pointer; /* Pointer cursor on hover */
+  width: 25%; /* Make the button full-width */
+}
+
+#message {
+  color: red; /* Red color for error messages */
+  font-weight: bold; /* Make the message bold */
+  margin-top: 10px; /* Space above the error message */
+}
+
+img {
+  margin-left: 40%;
+  height: 300px;
+  width: 300px;
+  border-radius: 250px;
+}
