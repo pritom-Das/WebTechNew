@@ -1,20 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styleindex.css" />
   </head>
   <body>
-    <img src="logo.png" alt="logo">
+    <img src="logo.png" alt="logo" />
     <div id="message"></div>
-   
-    <form action="process.php" method="post">
-      <div class="container">
-        <div class="box">
-          <div class="red">
+
+    <div class="container">
+      <div class="box">
+        <div class="red">
+          <form action="process.php" method="post" id="regform">
             <legend id="legend">Registration Form</legend>
             <label for="username">Enter your name :</label><br />
             <input
@@ -82,72 +81,79 @@
             <div>
               <input type="submit" name="submit" value="Submit" />
             </div>
-            </form>
+          </form>
 
-            <div>
-              <label for="bgColor">Choose Background Color:</label>
-              <input type="color" id="bgColor" name="bgColor" />
-            </div>
-          </div>
-
-          <div class="beige"></div>
-          <div class="blue">
-            <table>
-              <thead>
-                <tr>
-                  <th>City</th>
-                  <th>AQI</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Dhaka</td>
-                  <td>85</td>
-                </tr>
-                <tr>
-                  <td>Cumilla</td>
-                  <td>110</td>
-                </tr>
-                <tr>
-                  <td>Khulna</td>
-                  <td>95</td>
-                </tr>
-                <tr>
-                  <td>Barisal</td>
-                  <td>78</td>
-                </tr>
-                <tr>
-                  <td>Kustia</td>
-                  <td>102</td>
-                </tr>
-                <tr>
-                  <td>Chandpur</td>
-                  <td>88</td>
-                </tr>
-                <tr>
-                  <td>Nuakhali</td>
-                  <td>75</td>
-                </tr>
-                <tr>
-                  <td>Sylhet</td>
-                  <td>80</td>
-                </tr>
-                <tr>
-                  <td>Rajshahi</td>
-                  <td>90</td>
-                </tr>
-                <tr>
-                  <td>Narshingdi</td>
-                  <td>70</td>
-                </tr>
-              </tbody>
-            </table>
+          <div>
+            <label for="bgColor">Choose Background Color:</label>
+            <input type="color" id="bgColor" name="bgColor" />
           </div>
         </div>
+
+        <div class="beige">
+          <h3>Login</h3>
+          <form action="">
+            <label for="e_mail" name="e_mail">E-mail</label>
+            <input type="text" name="e_mail" id="e_mail" placeholder="email" />
+            <label for="logPass" name="logPass">Password</label>
+            <input type="password" placeholder="password" name="logpass" />
+            <button type="submit" id="subbtn">Login</button>
+          </form>
+        </div>
+        <div class="blue">
+          <table>
+            <thead>
+              <tr>
+                <th>City</th>
+                <th>AQI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dhaka</td>
+                <td>85</td>
+              </tr>
+              <tr>
+                <td>Cumilla</td>
+                <td>110</td>
+              </tr>
+              <tr>
+                <td>Khulna</td>
+                <td>95</td>
+              </tr>
+              <tr>
+                <td>Barisal</td>
+                <td>78</td>
+              </tr>
+              <tr>
+                <td>Kustia</td>
+                <td>102</td>
+              </tr>
+              <tr>
+                <td>Chandpur</td>
+                <td>88</td>
+              </tr>
+              <tr>
+                <td>Nuakhali</td>
+                <td>75</td>
+              </tr>
+              <tr>
+                <td>Sylhet</td>
+                <td>80</td>
+              </tr>
+              <tr>
+                <td>Rajshahi</td>
+                <td>90</td>
+              </tr>
+              <tr>
+                <td>Narshingdi</td>
+                <td>70</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </form>
+    </div>
 
     <script src="newscrit.js"></script>
   </body>
 </html>
-

@@ -1,9 +1,10 @@
 document.getElementById("bgColor").addEventListener("input", function () {
   document.querySelector(".red").style.backgroundColor = this.value;
 });
-function validate(event) {
-  event.preventDefault(); // Prevent default form submission
 
+const form = document.getElementById("regform");
+form.addEventListener("submit", function (event) {
+  console.log("submit checked");
   const name = document.getElementById("username").value.trim();
   const email = document.getElementById("email").value.trim();
   const genderMale = document.getElementById("male").checked;
@@ -14,10 +15,9 @@ function validate(event) {
   const city = document.getElementById("city").value;
   const termsAgreed = document.getElementById("agreed").checked;
   const termsNotAgreed = document.getElementById("nagree").checked;
-
   const message = document.getElementById("message");
 
-  // Check if any field is empty or unchecked
+  // VALIDATION CHECKS — if anything is wrong:
   if (
     name === "" ||
     email === "" ||
@@ -28,48 +28,49 @@ function validate(event) {
     city === "" ||
     (!termsAgreed && !termsNotAgreed)
   ) {
+    event.preventDefault(); // only prevent if invalid
     message.style.color = "red";
     message.textContent = "Please fill out all fields before submitting.";
     return false;
   }
-  //validate name
+
   const anyNumber = /\d/.test(name);
   if (anyNumber) {
+    event.preventDefault();
     message.style.color = "red";
-    message.innerHTML = "Name must no contain numbers";
-    //alert("Name must not contain numbers.");
-    return false;
-  }
-  //validate password
-  if (password.length < 8 || confipassword.length < 8) {
-    message.style.color = "red";
-    message.innerHTML = "password must contain 8 character";
-    return false;
-  }
-  if (password !== confipassword) {
-    alert("password and confirmpassword are not same");
+    message.innerHTML = "Name must not contain numbers";
     return false;
   }
 
-  //validate Email
-  //regex for email validation
+  if (password.length < 8 || confipassword.length < 8) {
+    event.preventDefault();
+    message.style.color = "red";
+    message.innerHTML = "Password must contain 8 characters";
+    return false;
+  }
+
+  if (password !== confipassword) {
+    event.preventDefault();
+    alert("Password and Confirm Password are not the same");
+    return false;
+  }
+
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailPattern.test(email)) {
+    event.preventDefault();
     message.style.color = "red";
     message.textContent = "Please enter a valid email address.";
     return false;
   }
 
-  //validate birthday
   const today = new Date();
   const birthdaydate = new Date(dob);
   let age = today.getFullYear() - birthdaydate.getFullYear();
   if (age < 18) {
+    event.preventDefault();
     message.style.color = "red";
-    message.innerHTML = "you must be at lest 18 years old";
+    message.innerHTML = "You must be at least 18 years old";
     return false;
   }
-
-  message.textContent = "";
-  event.target.submit();
-}
+  return true;
+});

@@ -106,6 +106,13 @@ button {
   cursor: pointer; /* Pointer cursor on hover */
   width: 25%; /* Make the button full-width */
 }
+.beige {
+}
+#subbtn {
+  margin-top: 10px;
+  position: relative;
+  left: 125px;
+}
 
 #message {
   color: red; /* Red color for error messages */
@@ -114,8 +121,8 @@ button {
 }
 
 img {
-  margin-left: 40%;
-  height: 300px;
-  width: 300px;
+  margin-left: 43%;
+  height: 200px;
+  width: 200px;
   border-radius: 250px;
 }
