@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+ <?php<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="stylingProcess.css">
 </head>
 <body>
-    <h2>User information</h2>
+    <h2>User Information</h2>
     <div class="container">
         <?php
         session_start(); // Start the session to store user data temporarily
@@ -17,18 +18,18 @@
             $email = htmlspecialchars($_POST['email']);
             $dob = htmlspecialchars($_POST['dob']);
             $city = htmlspecialchars($_POST['city']);
-            $pass = $_POST['password'];
+            $pass = htmlspecialchars($_POST['password']);
             $confipass = htmlspecialchars($_POST['confipassword']);
             $terms = isset($_POST['terms']) ? $_POST['terms'] : '';
 
             if ($uname && $email && $dob && $pass && $confipass && $city && $terms !== '') {
                 echo "<p> User name: $uname</p> ";
-                echo "<p> Email : $email</p>";
-                echo "<p> Dob : $dob </p>";
-                echo "<p> City : $city </p>";
-                echo "<p> Password : $pass</p>"; // Consider not showing the actual password again
-                echo "<p> Confirm Password : ******** </p>"; // Same here
-                echo "<p> Terms : $terms </p>";
+                echo "<p> Email: $email</p>";
+                echo "<p> Dob: $dob </p>";
+                echo "<p> City: $city </p>";
+                echo "<p> Password: $pass</p>"; // Displaying password as plain text
+                echo "<p> Confirm Password: $confipass </p>";
+                echo "<p> Terms: $terms </p>";
                 echo "<p>Please confirm your information before submitting.</p>";
 
                 // Store user data in session temporarily
@@ -40,9 +41,9 @@
                 $_SESSION['temp_terms'] = $terms;
 
                 // Form for the confirm button
-                echo '<form method="post">'; // Submit back to this same page
+                echo '<form method="post">';
                 echo '<button type="submit" name="confirm">Confirm</button>';
-                echo '<button type="button">Cancel</button>'; // Implement JavaScript to go back
+                echo '<button type="button" onclick="window.history.back();">Cancel</button>';
                 echo '</form>';
 
             } else {
@@ -71,17 +72,16 @@
                 die("Connection failed: " . mysqli_connect_error());
             }
 
-            // **SECURITY IMPROVEMENT: Use prepared statements to prevent SQL injection**
+            // Use prepared statements to prevent SQL injection
             $sql = "INSERT INTO userinformation (name, email, password, country, dob) VALUES (?, ?, ?, ?, ?)";
             $stmt = mysqli_prepare($conn, $sql);
 
             if ($stmt) {
-                $hashedPassword = password_hash($pass, PASSWORD_DEFAULT); // Hash the password
-                mysqli_stmt_bind_param($stmt, "sssss", $uname, $email, $hashedPassword, $city, $dob);
+                // Store password as plain text (not hashed)
+                mysqli_stmt_bind_param($stmt, "sssss", $uname, $email, $pass, $city, $dob);
 
                 if (mysqli_stmt_execute($stmt)) {
                     echo "<p>User information inserted successfully.</p>";
-                    // Optionally clear the session data after successful insertion
                     unset($_SESSION['temp_uname']);
                     unset($_SESSION['temp_email']);
                     unset($_SESSION['temp_dob']);
@@ -97,7 +97,7 @@
             }
             mysqli_close($conn);
 
-            echo '<button type="button"><a href="index.html">go back to form</a></button>'; // Link back to the form
+            echo '<button type="button"><a href="index.html">Go back to form</a></button>';
         } else {
             // If process.php is accessed directly without submitting the form
             echo "<p>No user data to confirm.</p>";
@@ -107,3 +107,4 @@
     </div>
 </body>
 </html>
+       
