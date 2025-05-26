@@ -23,9 +23,10 @@ label {
   height: 60%;
 }
 .blue {
-  background-color: deepskyblue;
+  background-color: rgb(94, 120, 165);
   width: 50%;
   height: 100%;
+  filter: blur(3px); /* Permanent blur effect */
 }
 .beige {
   background-color: beige;
@@ -106,8 +107,7 @@ button {
   cursor: pointer; /* Pointer cursor on hover */
   width: 25%; /* Make the button full-width */
 }
-.beige {
-}
+
 #subbtn {
   margin-top: 10px;
   position: relative;

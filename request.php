@@ -1,14 +1,13 @@
 <?php
 session_start();
 
-// Check if the user is logged in. If not, redirect to the login page.
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     $_SESSION['login_error'] = "You must be logged in to access this page.";
-    header("Location: error.html"); // Or your login page, e.g., index.php
+    header("Location: error.html"); 
     exit();
 }
 
-$userName = $_SESSION['user_name'] ?? 'Guest'; // Get the username from the session
+$userName = $_SESSION['user_name'] ?? 'Guest'; 
 
 $cities = [
     "New York", "London", "Paris", "Tokyo", "Dubai", "Singapore",
@@ -17,13 +16,10 @@ $cities = [
     "Amsterdam", "Seoul", "Toronto"
 ];
 
-$selectedCities = []; // This will now typically be populated from session if returning after error
+$selectedCities = [];
 $errorMessage = '';
-
-// Check if there are previously selected cities in the session (e.g., if redirected back due to error)
 if (isset($_SESSION['temp_selected_cities']) && is_array($_SESSION['temp_selected_cities'])) {
     $selectedCities = $_SESSION['temp_selected_cities'];
-    // Clear it after retrieving, unless you want it to persist for other reasons
     unset($_SESSION['temp_selected_cities']);
 }
 
@@ -31,15 +27,12 @@ if (isset($_SESSION['temp_selected_cities']) && is_array($_SESSION['temp_selecte
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_cities'])) {
     if (isset($_POST['cities']) && is_array($_POST['cities'])) {
-        $submittedCities = $_POST['cities']; // Use a different variable name for clarity
+        $submittedCities = $_POST['cities']; 
         if (count($submittedCities) < 10) {
             $errorMessage = "Please select at least 10 cities.";
-            // Store selected cities temporarily in session so they remain checked on redirect
             $_SESSION['temp_selected_cities'] = $submittedCities;
         } else {
-            // Store selected cities in session for cities.php
             $_SESSION['final_selected_cities'] = $submittedCities;
-            // Redirect to cities.php upon successful selection
             header("Location: cities.php");
             exit();
         }
@@ -48,14 +41,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_cities'])) {
     }
 }
 
-// If there's an error message from a previous submission, store it to display
+// If there's an error in city selection 
 if (isset($_SESSION['city_selection_error'])) {
     $errorMessage = $_SESSION['city_selection_error'];
-    unset($_SESSION['city_selection_error']); // Clear after displaying
+    unset($_SESSION['city_selection_error']); 
 }
 
-// If form was submitted and there's an error, $selectedCities will already be populated from $_POST
-// Otherwise, it might be empty or populated from $_SESSION['temp_selected_cities'] if redirected back for error
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,7 +110,7 @@ if (isset($_SESSION['city_selection_error'])) {
         }
         .city-item input[type="checkbox"] {
             margin-right: 10px;
-            accent-color: #007bff; /* Custom checkbox color */
+            accent-color: #007bff; 
             transform: scale(1.2); /* Slightly larger checkbox */
         }
         .city-item label {
@@ -198,11 +189,11 @@ if (isset($_SESSION['city_selection_error'])) {
                     </div>
                 <?php endforeach; ?>
             </div>
-            <button type="submit" name="submit_cities" class="submit-button">Submit Selections</button>
+            <button type="submit" name="submit_cities" class="submit-button">Submit </button>
         </form>
 
         <div class="footer-links">
-            <a href="dashboard.php">Go to Dashboard (if you have one)</a>
+            <a href="dashboard.php">Go to Dashboard</a>
             <a href="logout.php">Logout</a>
         </div>
     </div>

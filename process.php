@@ -27,7 +27,7 @@
                 echo "<p> Email: $email</p>";
                 echo "<p> Dob: $dob </p>";
                 echo "<p> City: $city </p>";
-                echo "<p> Password: $pass</p>"; // Displaying password as plain text
+                echo "<p> Password: $pass</p>"; 
                 echo "<p> Confirm Password: $confipass </p>";
                 echo "<p> Terms: $terms </p>";
                 echo "<p>Please confirm your information before submitting.</p>";
@@ -51,7 +51,6 @@
                 echo '<button type="button" onclick="window.history.back();">Go Back</button>';
             }
         } elseif (isset($_POST['confirm'])) {
-            // The "Confirm" button was clicked
 
             // Retrieve user data from the session
             $uname = $_SESSION['temp_uname'];
@@ -77,7 +76,6 @@
             $stmt = mysqli_prepare($conn, $sql);
 
             if ($stmt) {
-                // Store password as plain text (not hashed)
                 mysqli_stmt_bind_param($stmt, "sssss", $uname, $email, $pass, $city, $dob);
 
                 if (mysqli_stmt_execute($stmt)) {
@@ -99,7 +97,6 @@
 
             echo '<button type="button"><a href="index.html">Go back to form</a></button>';
         } else {
-            // If process.php is accessed directly without submitting the form
             echo "<p>No user data to confirm.</p>";
             echo '<button type="button"><a href="index.html">Go to Registration Form</a></button>';
         }
